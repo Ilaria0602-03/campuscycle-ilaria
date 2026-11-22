@@ -188,6 +188,7 @@ export function BookingForm(props: BookingFormProps) {
           {errors.note && <FieldError id="note-error">{errors.note}</FieldError>}
         </div>
 
+        {/* W6: <RepairChoice repairs={props.repairs} /> */}
         <RepairChoice repairs={props.repairs} />
 
         {/* The trap field: name="extra" is TRAP_FIELD in src/tasks/book-slot/guards.ts (keep the two the
