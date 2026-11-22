@@ -94,6 +94,9 @@ export interface Config {
     timeSlots: {
       bookings: 'bookings';
     };
+    repairs: {
+      bookings: 'bookings';
+    };
   };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
@@ -389,6 +392,10 @@ export interface Booking {
    * The clinic time slot this booking is for.
    */
   timeSlot: number | TimeSlot;
+  /**
+   * The repairs requested with this booking.
+   */
+  repairs?: (number | Repair)[] | null;
   name: string;
   email: string;
   note?: string | null;
@@ -400,6 +407,23 @@ export interface Booking {
    * Filled in by the booking form. It stops the same form from saving two bookings.
    */
   requestId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "repairs".
+ */
+export interface Repair {
+  id: number;
+  name: string;
+  price: number;
+  description?: string | null;
+  bookings?: {
+    docs?: (number | Booking)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -431,18 +455,6 @@ export interface Member {
     | null;
   password?: string | null;
   collection: 'members';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "repairs".
- */
-export interface Repair {
-  id: number;
-  name: string;
-  price: number;
-  description?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -703,6 +715,7 @@ export interface TimeSlotsSelect<T extends boolean = true> {
  */
 export interface BookingsSelect<T extends boolean = true> {
   timeSlot?: T;
+  repairs?: T;
   name?: T;
   email?: T;
   note?: T;
@@ -719,6 +732,7 @@ export interface RepairsSelect<T extends boolean = true> {
   name?: T;
   price?: T;
   description?: T;
+  bookings?: T;
   updatedAt?: T;
   createdAt?: T;
 }
