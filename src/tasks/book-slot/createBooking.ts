@@ -174,14 +174,11 @@ async function checkAndSave(formData: FormData, context: BookingContext): Promis
   // Which clinic's page the form is on, to check the time slot belongs to that clinic. Not saved.
   const clinicSlug = read(formData, 'clinic')
 
-  // W6: switch on the repair choice. Remove the // in front of the next line, and of `repairs,` in
-  // payload.create below. It keeps only whole numbers, the ids of the repairs the user ticked.
-  const repairs = [...new Set(
-    formData
-      .getAll('repairs')
-      .map(Number)
-      .filter((id) => Number.isSafeInteger(id) && id > 0),
-  )]
+  // W6: switch on the repair choice.
+  // The selected repair ids are saved with the booking.
+  const repairs = formData.getAll('repairs')
+    .map(Number)
+    .filter((id) => Number.isSafeInteger(id) && id > 0)
 
   // 1. The trap field. The message says only that the booking was not saved: a program that filled
   // the trap learns nothing about why.
