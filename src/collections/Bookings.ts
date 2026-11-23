@@ -44,6 +44,15 @@ export const Bookings: CollectionConfig = {
       },
     },
     {
+  name: 'repairs',
+  type: 'relationship',
+  relationTo: 'repairs',
+  hasMany: true,
+  admin: {
+    description: 'The repairs requested with this booking.',
+  },
+},
+    {
       name: 'name',
       type: 'text',
       required: true,

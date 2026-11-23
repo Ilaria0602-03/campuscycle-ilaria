@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { publicContent } from '../access'
+import { editorsOnlyField, publicContent } from '../access'
 import { price } from './fields'
 
 // The repairs the clinic can do, each with its price.
@@ -20,6 +20,15 @@ export const Repairs: CollectionConfig = {
       name: 'description',
       type: 'textarea',
     },
+    {
+  name: 'bookings',
+  type: 'join',
+  collection: 'bookings',
+  on: 'repairs',
+  access: {
+    read: editorsOnlyField,
+  },
+},
     // Add new repair fields here.
   ],
 }

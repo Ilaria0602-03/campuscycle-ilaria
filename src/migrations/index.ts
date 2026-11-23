@@ -1,10 +1,11 @@
-import * as migration_20260928_082604_initial from './20260928_082604_initial';
+﻿import * as migration_20260928_082604_initial from './20260928_082604_initial';
 import * as migration_20260928_151841_content_model from './20260928_151841_content_model';
 import * as migration_20261004_165222_site_facts from './20261004_165222_site_facts';
 import * as migration_20261004_173034_latest_end from './20261004_173034_latest_end';
 import * as migration_20261004_205526_booking_request_id from './20261004_205526_booking_request_id';
 import * as migration_20261004_222941_members_area from './20261004_222941_members_area';
 import * as migration_20261121_111525_what_to_bring from './20261121_111525_what_to_bring';
+import * as migration_20261121_135352_booking_repairs from './20261121_135352_booking_repairs';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20261121_111525_what_to_bring.up,
     down: migration_20261121_111525_what_to_bring.down,
-    name: '20261121_111525_what_to_bring'
+    name: '20261121_111525_what_to_bring',
+  },
+  {
+    up: migration_20261121_135352_booking_repairs.up,
+    down: migration_20261121_135352_booking_repairs.down,
+    name: '20261121_135352_booking_repairs'
   },
 ];
